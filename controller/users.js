@@ -12,13 +12,21 @@ const createUser = async (req, res) => {
       apellido,
     })
 
-    await newUser.save();
+    const emailFind = await User.findOne({ email: req.body.email }) 
+    if (emailFind) {
+      res.status(401).json({
+        message: 'El email ya ha sido utilizado'
+      })      
+    } else{ 
+      await newUser.save();
+      res.status(200).json({
+        message: 'Usuario creado exitosamente',
+        newUser,
+      })
+    }
 
-    res.json({
-      message: 'Usuario creado exitosamente'
-    })
   } catch (error) {
-    res.json({
+    res.status(404).json({
     error
   })
   }
