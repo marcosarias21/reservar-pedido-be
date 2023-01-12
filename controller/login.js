@@ -20,6 +20,7 @@ const login = async (req, res) => {
    if (match) {
     return res.status(200).json({
       message: 'Logueado existosamente',
+      user,
       token
     }),
     user
