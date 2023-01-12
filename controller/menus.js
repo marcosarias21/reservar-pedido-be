@@ -20,4 +20,16 @@ const createMenu = async (req, res) => {
   }
 }
 
-module.exports = { createMenu }
+const getMenu = async (req, res) => {
+  const areas = await Menu.find({});
+  try {
+    res.json({
+      areas
+    })    
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+module.exports = { createMenu, getMenu }
