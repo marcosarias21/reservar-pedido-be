@@ -21,10 +21,10 @@ const createMenu = async (req, res) => {
 }
 
 const getMenu = async (req, res) => {
-  const areas = await Menu.find({});
+  const menu = await Menu.find({});
   try {
     res.json({
-      areas
+      menu
     })    
   } catch (error) {
     res.json({
@@ -32,4 +32,21 @@ const getMenu = async (req, res) => {
     })
   }
 }
-module.exports = { createMenu, getMenu }
+
+const deleteMenu = async (req, res) => {
+  const { id } = req.body
+  const menuDeleted = await Menu.findByIdAndDelete(id);
+  
+  try {
+    res.json({
+      message: 'Menu Eliminado correctamente',
+      menuDeleted,
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+
+module.exports = { createMenu, getMenu, deleteMenu }
