@@ -1,12 +1,13 @@
 const Menu = require('../models/menus');
 
 const createMenu = async (req, res) => {
-  const { nombre, imagen  } = req.body;
+  const { nombre, imagen, empresa  } = req.body;
 
   try {
     const newMenu = new Menu({
       nombre,
       imagen,
+      empresa,
     })    
 
     await newMenu.save();
@@ -35,8 +36,8 @@ const getMenu = async (req, res) => {
 }
 
 const editMenu = async (req, res) => {
-  const { nombre, imagen, id } = req.body;
-  const menuEdited = await Menu.findByIdAndUpdate(id, {nombre, imagen})
+  const { nombre, imagen, empresa, id } = req.body;
+  const menuEdited = await Menu.findByIdAndUpdate(id, {nombre, imagen, empresa})
   try {
     res.json({
       message: 'Menu editado correctamente',
