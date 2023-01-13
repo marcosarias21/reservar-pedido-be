@@ -2,7 +2,7 @@ const User = require('../models/users');
 const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
-  const { email, password, nombre, apellido, empresa, pedidos  } = req.body
+  const { email, password, nombre, apellido, empresa  } = req.body
   const passwordEncrypted = bcrypt.hashSync(password, 10);
   try {
     const newUser = new User({
@@ -11,7 +11,6 @@ const createUser = async (req, res) => {
       nombre,
       empresa,
       apellido,
-      pedidos,
     })
 
     const emailFind = await User.findOne({ email: req.body.email }) 
@@ -35,4 +34,22 @@ const createUser = async (req, res) => {
   console.log(email, password, nombre, apellido)
 }
 
-module.exports = { createUser } 
+const addProductUser = async (req, res) => {
+  const { id, nombre } = req.body;
+  const userEdited = await User.findByIdAndUpdate(id, {
+    $addToSet: {
+      pedidos: {
+        pedido: nombre
+      },
+    },
+  })
+  try {
+    res.json({
+      userEdited
+    })
+  } catch (error) {
+    
+  }
+}
+
+module.exports = { createUser, addProductUser } 

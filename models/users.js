@@ -6,7 +6,10 @@ const user = new Schema({
   email: String,
   password: String,
   empresa: String,
-  pedidos: Array,
+  pedidos: [{
+    pedido: String,
+    time: String,
+   }],
 })
 
 module.exports = model('User', user)
