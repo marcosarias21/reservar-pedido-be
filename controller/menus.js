@@ -24,9 +24,25 @@ const getMenu = async (req, res) => {
   const menu = await Menu.find({});
   try {
     res.json({
+      message: 'Menu obtenido correctamente',
       menu
     })    
   } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+
+const editMenu = async (req, res) => {
+  const { nombre, imagen, id } = req.body;
+  const menuEdited = await Menu.findByIdAndUpdate(id, {nombre, imagen})
+  try {
+    res.json({
+      message: 'Menu editado correctamente',
+      menuEdited
+    })
+  } catch (error) { 
     res.json({
       error
     })
@@ -49,4 +65,4 @@ const deleteMenu = async (req, res) => {
   }
 }
 
-module.exports = { createMenu, getMenu, deleteMenu }
+module.exports = { createMenu, getMenu, editMenu, deleteMenu }
