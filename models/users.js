@@ -5,6 +5,7 @@ const user = new Schema({
   apellido: String,
   email: String,
   password: String,
+  empresa: String,
 })
 
 module.exports = model('User', user)
