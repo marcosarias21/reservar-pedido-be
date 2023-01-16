@@ -7,6 +7,7 @@ const user = new Schema({
   password: String,
   empresa: String,
   pedidos: [{
+    type:Schema.Types.Object,
     pedido: String,
     time: String,
    }],

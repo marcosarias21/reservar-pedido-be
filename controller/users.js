@@ -35,8 +35,8 @@ const createUser = async (req, res) => {
 }
 
 const addProductUser = async (req, res) => {
-  const { id, nombre, hora } = req.body;
-  const userEdited = await User.findByIdAndUpdate(id, {
+  const { token, nombre, hora } = req.body;
+  const userEdited = await User.findOneAndUpdate(token, {
     $addToSet: {
       pedidos: {
         pedido: nombre,
@@ -49,7 +49,7 @@ const addProductUser = async (req, res) => {
       userEdited
     })
   } catch (error) {
-    
+    message: error
   }
 }
 
