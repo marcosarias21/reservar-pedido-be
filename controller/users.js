@@ -35,11 +35,12 @@ const createUser = async (req, res) => {
 }
 
 const addProductUser = async (req, res) => {
-  const { id, nombre } = req.body;
+  const { id, nombre, hora } = req.body;
   const userEdited = await User.findByIdAndUpdate(id, {
     $addToSet: {
       pedidos: {
-        pedido: nombre
+        pedido: nombre,
+        time: hora
       },
     },
   })
