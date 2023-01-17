@@ -35,13 +35,10 @@ const createUser = async (req, res) => {
 }
 
 const addProductUser = async (req, res) => {
-  const { token, nombre, hora } = req.body;
-  const userEdited = await User.findOneAndUpdate(token, {
-    $addToSet: {
-      pedidos: {
-        pedido: nombre,
-        time: hora
-      },
+  const { email, nuevoPedido, hora } = req.body;
+  const userEdited = await User.findOneAndUpdate({email}, {
+    $push: {
+      pedidos: { pedido: nuevoPedido, hora },
     },
   })
   try {
@@ -49,7 +46,7 @@ const addProductUser = async (req, res) => {
       userEdited
     })
   } catch (error) {
-    message: error
+
   }
 }
 
