@@ -6,10 +6,9 @@ const user = new Schema({
   email: String,
   password: String,
   empresa: String,
-  pedidos: [{
-    type:Schema.Types.Object,
+  pedidos: [{ 
     pedido: String,
-    time: String,
+    hora: String,
    }],
 })
 
