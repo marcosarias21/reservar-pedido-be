@@ -11,6 +11,7 @@ const createUser = async (req, res) => {
       nombre,
       empresa,
       apellido,
+      rol: 'Cliente',
     })
 
     const emailFind = await User.findOne({ email: req.body.email }) 

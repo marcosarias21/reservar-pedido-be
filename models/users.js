@@ -6,6 +6,7 @@ const user = new Schema({
   email: String,
   password: String,
   empresa: String,
+  rol: String,
   pedidos: [{ 
     pedido: String,
     hora: String,
