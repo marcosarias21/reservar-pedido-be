@@ -26,7 +26,7 @@ const login = async (req, res) => {
     user
    } else {
     return res.status(404).json({
-      message: 'Usuario o cotrasena invalido',
+      message: 'Usuario o contrasena invalido',
     });
    }
 }
