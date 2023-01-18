@@ -36,22 +36,17 @@ const createUser = async (req, res) => {
 
 const addProductUser = async (req, res) => {
   const { email, nuevoPedido, hora } = req.body;
-
-  if (nuevoPedido === undefined) {
-    res.json({
-      message: "Recibiste undefined"
-    })
-  } else {
     await User.findOneAndUpdate({email}, {
       $push: {
         pedidos: { pedido: nuevoPedido, hora },
       },
     })    
-  }
+
 
   try {
     res.json({
-      message: `Se agrego ${nuevoPedido} a tus pedidos`
+      message: `Se agrego ${nuevoPedido} a tus pedidos`,
+      nuevoPedido
     })
   } catch (error) {
 
