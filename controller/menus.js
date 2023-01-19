@@ -36,8 +36,8 @@ const getMenu = async (req, res) => {
 }
 
 const editMenu = async (req, res) => {
-  const { nombre, imagen, empresa, id } = req.body;
-  const menuEdited = await Menu.findByIdAndUpdate(id, {nombre, imagen, empresa})
+  const { nombre, empresa, id } = req.body;
+  const menuEdited = await Menu.findByIdAndUpdate(id, {nombre, empresa})
   try {
     res.json({
       message: 'Menu editado correctamente',
