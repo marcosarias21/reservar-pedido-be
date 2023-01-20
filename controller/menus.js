@@ -12,7 +12,7 @@ const createMenu = async (req, res) => {
 
     await newMenu.save();
     res.json({
-      message: 'Area creada exitosamente',
+      message: 'Menu creada exitosamente',
     });
   } catch (error) {
     res.json({
