@@ -54,4 +54,17 @@ const addProductUser = async (req, res) => {
   }
 }
 
-module.exports = { createUser, addProductUser } 
+const getUsers = async (req, res) => {
+  const users = await User.find({})
+  try {
+    res.json({
+      users
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+
+module.exports = { createUser, addProductUser, getUsers } 
