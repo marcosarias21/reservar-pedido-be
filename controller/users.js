@@ -67,4 +67,19 @@ const getUsers = async (req, res) => {
   }
 }
 
-module.exports = { createUser, addProductUser, getUsers } 
+const searchUser = async (req, res) => {
+  const { search } = req.params;
+  const regex = new RegExp(search, 'i')
+  const result = await User.find({ nombre: {$regex: regex} })
+  try {
+    res.json({
+      result
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+
+module.exports = { createUser, addProductUser, getUsers, searchUser } 
