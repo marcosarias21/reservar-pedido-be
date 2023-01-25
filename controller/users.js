@@ -70,7 +70,16 @@ const getUsers = async (req, res) => {
 const searchUser = async (req, res) => {
   const { search } = req.params;
   const regex = new RegExp(search, 'i')
-  const result = await User.find({ nombre: {$regex: regex} })
+  const result = await User.find({
+    "$expr": {
+      "$regexMatch": {
+        "input": { "$concat": ["$nombre", " ", "$apellido"] },
+        "regex": search,  //Your text search here
+        "options": "i"
+      }
+    }
+  }
+ )
   try {
     res.json({
       result
