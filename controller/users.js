@@ -74,7 +74,7 @@ const searchUser = async (req, res) => {
     "$expr": {
       "$regexMatch": {
         "input": { "$concat": ["$nombre", " ", "$apellido"] },
-        "regex": search,  //Your text search here
+        "regex": search,
         "options": "i"
       }
     }
