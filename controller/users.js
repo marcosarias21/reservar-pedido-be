@@ -67,6 +67,20 @@ const getUsers = async (req, res) => {
   }
 }
 
+const getOrderClient = async (req, res) => {
+  const { email } = req.params;
+  const { user } = await User.find({ email })
+  try {
+    res.json({
+      user,
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
+
 const searchUser = async (req, res) => {
   const { search } = req.params;
   const regex = new RegExp(search, 'i')
@@ -91,4 +105,4 @@ const searchUser = async (req, res) => {
   }
 }
 
-module.exports = { createUser, addProductUser, getUsers, searchUser } 
+module.exports = { createUser, addProductUser, getUsers, getOrderClient, searchUser } 
