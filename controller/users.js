@@ -69,7 +69,7 @@ const getUsers = async (req, res) => {
 
 const getOrderClient = async (req, res) => {
   const { email } = req.params;
-  const { user } = await User.find({ email })
+  const user = await User.findOne({ email })
   try {
     res.json({
       user,
