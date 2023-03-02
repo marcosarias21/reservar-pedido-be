@@ -7,6 +7,6 @@ router
 .post('', createUser)
 .put('', addProductUser)
 .get('', getUsers)
-.get('/:email',  getOrderClient)
+.get('/client/:email',  getOrderClient)
 .get('/:search', searchUser)
 module.exports = router;
