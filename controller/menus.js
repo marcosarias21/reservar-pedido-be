@@ -8,6 +8,7 @@ const createMenu = async (req, res) => {
       nombre,
       imagen,
       empresa,
+      type,
     })    
 
     await newMenu.save();
