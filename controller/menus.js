@@ -1,7 +1,7 @@
 const Menu = require('../models/menus');
 
 const createMenu = async (req, res) => {
-  const { nombre, imagen, empresa  } = req.body;
+  const { nombre, imagen, empresa, type  } = req.body;
 
   try {
     const newMenu = new Menu({
