@@ -35,6 +35,20 @@ const getMenu = async (req, res) => {
     })
   }
 }
+const searchMenu = async (req, res) => {
+  const { search } = req.params;
+  const regex = new RegExp(search, 'i')
+  const menuFinded = await Menu.find({ nombre: {$regex: regex} })
+  try {
+    res.json({
+      menuFinded
+    })
+  } catch (error) {
+    res.json({
+      error
+    })
+  }
+}
 
 const editMenu = async (req, res) => {
   const { nombre, empresa, id } = req.body;
@@ -67,4 +81,4 @@ const deleteMenu = async (req, res) => {
   }
 }
 
-module.exports = { createMenu, getMenu, editMenu, deleteMenu }
+module.exports = { createMenu, getMenu, editMenu, searchMenu, deleteMenu }
