@@ -38,10 +38,10 @@ const getMenu = async (req, res) => {
 const searchMenu = async (req, res) => {
   const { search } = req.params;
   const regex = new RegExp(search, 'i')
-  const menuFinded = await Menu.find({ nombre: {$regex: regex} })
+  const menuFounded = await Menu.find({ nombre: {$regex: regex} })
   try {
     res.json({
-      menuFinded
+      menuFounded
     })
   } catch (error) {
     res.json({
